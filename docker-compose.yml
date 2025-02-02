@@ -13,8 +13,6 @@ services:
       - 3000
     networks:
       - dokploy-network
-    labels:
-      - traefik.enable=true
   # Add more containers below (nginx, postgres, etc.)
 # Define a network, which allows containers to communicate
 # with each other, by using their container name as a hostname
