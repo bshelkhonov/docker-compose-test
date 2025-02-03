@@ -11,11 +11,6 @@ services:
     restart: always
     ports:
       - 3000
-    networks:
-      - dokploy-network
   # Add more containers below (nginx, postgres, etc.)
 # Define a network, which allows containers to communicate
 # with each other, by using their container name as a hostname
-networks:
-  dokploy-network:
-    external: true
