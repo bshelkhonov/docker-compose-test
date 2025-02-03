@@ -9,10 +9,12 @@ WORKDIR /app
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
 # Omit --production flag for TypeScript devDependencies
 
+RUN npm i -g corepack@latest
+
 RUN \
   if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
   elif [ -f package-lock.json ]; then npm ci; \
-  elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm@10.1.0+sha1.$(npm view pnpm@10.1.0 dist.shasum) && pnpm i; \
+  elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm i; \
   # Allow install without lockfile, so example works even without Node.js installed locally
   else echo "Warning: Lockfile not found. It is recommended to commit lockfiles to version control." && yarn install; \
   fi
